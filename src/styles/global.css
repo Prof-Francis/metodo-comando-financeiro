@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-family-sans);
+	background: var(--color-background);
+	color: var(--color-text);
+}
+
+body {
+	margin: 0;
+}
+
+header,
+main {
+	width: min(100% - (var(--space-8) * 2), var(--content-width));
+	margin-inline: auto;
+}
+
+nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+	margin: 0;
+	padding: var(--space-6) 0;
+	list-style: none;
+}
+
+a {
+	color: var(--color-link);
+}
+
+main {
+	padding-block: var(--space-8);
+}

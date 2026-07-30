@@ -1,0 +1,159 @@
+---
+import { Image, Picture } from 'astro:assets';
+import HomeLinkCard from '../components/HomeLinkCard.astro';
+import { getWhatsAppUrl } from '../config/site';
+import { solutions } from '../data/solutions';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import heroPhoto from '../assets/brand/photos/francis-hero-recorte.png';
+import aboutPhoto from '../assets/brand/photos/francis-sobre-oficial.png';
+import brandPattern from '../assets/brand/backgrounds/pattern.png';
+import '../styles/home.css';
+
+const supportLink = getWhatsAppUrl();
+---
+
+<BaseLayout
+	title="Início"
+	description="Acesse as soluções do ecossistema Comando Financeiro e encontre o próximo passo para sua vida financeira."
+	hideNavigation
+	bodyClass="home-body"
+>
+	<div class="home-shell">
+		<div class="ambient-glow" aria-hidden="true"></div>
+		<Image
+			src={brandPattern}
+			alt=""
+			format="webp"
+			width={720}
+			quality={65}
+			class="brand-pattern"
+			loading="eager"
+		/>
+
+		<header class="hero" aria-labelledby="home-title">
+			<div class="brand-logo-wrap">
+				<img
+					class="brand-logo"
+					src="/brand/logos/comando-financeiro-horizontal-branco-verde.png"
+					alt="Comando Financeiro"
+					width="1280"
+					height="500"
+					fetchpriority="high"
+				/>
+			</div>
+
+			<div class="portrait-frame">
+				<Picture
+					src={heroPhoto}
+					alt="Prof. Francis Biazon"
+					formats={['avif', 'webp']}
+					widths={[320, 480]}
+					sizes="(max-width: 520px) 68vw, 320px"
+					quality={80}
+					loading="eager"
+					fetchpriority="high"
+				/>
+			</div>
+
+			<div class="hero-copy">
+				<h1 id="home-title">Prof. Francis Biazon</h1>
+				<p class="tagline">Do dinheiro que some ao salário que sobra.</p>
+				<p class="eyebrow">Método Comando Financeiro</p>
+				<p class="hero-cta" id="solutions-title">
+					Escolha seu próximo passo para assumir o comando da sua vida financeira.
+				</p>
+			</div>
+		</header>
+
+		<section class="links-section" id="solucoes" aria-labelledby="solutions-title">
+			<div class="links-list">
+				{
+					solutions.map((solution, index) => (
+						<HomeLinkCard
+							label={solution.label}
+							title={solution.title}
+							description={solution.cardDescription}
+							cta={solution.cta}
+							href={solution.href}
+							featured={index === 0}
+						/>
+					))
+				}
+
+				<HomeLinkCard
+					label="Suporte"
+					title="Não sabe por onde começar?"
+					description="Fale com nossa equipe e descubra qual solução faz mais sentido para você."
+					cta="Falar com o suporte"
+					href={supportLink}
+				/>
+			</div>
+		</section>
+
+		<section class="about-section" aria-labelledby="about-title">
+			<div class="about-content">
+				<div class="about-photo">
+					<Picture
+						src={aboutPhoto}
+						alt="Prof. Francis Biazon em ambiente de trabalho"
+						formats={['avif', 'webp']}
+						widths={[360, 560]}
+						sizes="(max-width: 640px) 46vw, 272px"
+						quality={78}
+						loading="lazy"
+					/>
+				</div>
+				<h2 id="about-title">Prazer, eu sou o Prof. Francis.</h2>
+				<div class="about-story">
+					<p>
+						Durante muitos anos eu achei que o problema da minha vida financeira era a renda. Então
+						fiz o que muita gente faz: trabalhei mais, aumentei meus ganhos... e, mesmo assim, o
+						dinheiro não se transformava em patrimônio.
+					</p>
+					<p>O mais frustrante é que eu conhecia a teoria.</p>
+					<p>
+						Trabalhei no mercado financeiro, me tornei professor universitário e passei anos
+						ensinando finanças e comportamento financeiro. Mas descobri uma verdade que mudou a
+						minha vida:
+					</p>
+					<p class="about-highlight">Teoria, sozinha, não muda a vida de ninguém.</p>
+					<p>Foi quando decidi aplicar em mim aquilo que ensinava aos outros.</p>
+					<p>
+						Minha realidade financeira começou a mudar e percebi que o mesmo problema se repetia
+						com centenas de pessoas: profissionais inteligentes, com boa renda, mas incapazes de
+						transformar esforço em patrimônio.
+					</p>
+					<p>
+						Foi dessa experiência que nasceu o <span class="about-highlight"
+							>Método Comando Financeiro</span
+						>.
+					</p>
+					<p>Hoje meu propósito é ajudar outras pessoas a fazerem o mesmo caminho.</p>
+					<p class="about-highlight about-conclusion">
+						Eu não desenvolvi esse método apenas porque estudei finanças. Eu desenvolvi porque
+						precisei aplicá-las primeiro na minha própria vida. E é exatamente por isso que ele
+						funciona.
+					</p>
+					<a class="about-cta" href="#solucoes">
+						Agora escolha o seu próximo passo, comece a assumir o comando da sua vida financeira e
+						conheça as soluções. <span class="about-cta-action">↑ Conheça as soluções</span>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<footer class="home-footer">
+			<img
+				src="/brand/logos/comando-financeiro-simbolo-branco-verde.png"
+				alt=""
+				width="500"
+				height="500"
+			/>
+			<p>Comando Financeiro</p>
+			<nav aria-label="Links legais">
+				<a href="/politica-de-privacidade">Política de Privacidade</a>
+				<a href="/termos-de-uso">Termos de Uso</a>
+			</nav>
+		</footer>
+	</div>
+</BaseLayout>

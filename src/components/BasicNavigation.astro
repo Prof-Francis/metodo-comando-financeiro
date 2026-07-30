@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<nav aria-label="Navegação principal">
+	<ul>
+		{
+			siteConfig.navigation.map((item) => (
+				<li>
+					<a href={item.href}>{item.label}</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>

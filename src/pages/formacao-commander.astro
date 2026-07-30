@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSolutionBySlug } from '../data/solutions';
+
+const solution = getSolutionBySlug('formacao-commander');
+---
+
+<BaseLayout title={solution.title} description={solution.placeholderDescription} noindex>
+	<h1>{solution.title}</h1>
+	<p>{solution.placeholderDescription}</p>
+</BaseLayout>

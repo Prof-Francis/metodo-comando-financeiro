@@ -1,0 +1,61 @@
+---
+import BasicNavigation from '../components/BasicNavigation.astro';
+import { siteConfig } from '../config/site';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+	noindex?: boolean;
+	hideNavigation?: boolean;
+	bodyClass?: string;
+}
+
+const {
+	title,
+	description,
+	noindex = false,
+	hideNavigation = false,
+	bodyClass,
+} = Astro.props;
+const pageTitle = title === 'Início' ? siteConfig.name : `${title} | ${siteConfig.name}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+---
+
+<!doctype html>
+<html lang={siteConfig.locale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link
+			rel="apple-touch-icon"
+			href="/brand/logos/comando-financeiro-simbolo-branco-verde.png"
+		/>
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="og:site_name" content={siteConfig.name} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={description} />
+	</head>
+	<body class={bodyClass}>
+		{!hideNavigation && (
+			<header>
+				<BasicNavigation />
+			</header>
+		)}
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
