@@ -14,8 +14,5 @@
 /favicon.ico
   Cache-Control: public, max-age=86400
 
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://:version.:project.pages.dev/*
+https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
